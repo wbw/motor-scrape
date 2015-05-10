@@ -1,0 +1,12 @@
+{
+  "name": "motor-scrape",
+  "version": "1.0.0",
+  "description": "Scrape a site for motorcycle images and data",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "run": "node index.js"
+  },
+  "author": "Wytze B. Westra",
+  "license": "ISC"
+}
