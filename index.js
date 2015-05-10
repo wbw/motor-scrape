@@ -37,12 +37,15 @@ function scrapeBrands(error, brandElements) {
 							var modelUrl = modelElement.attr("href");
 
 							// Get the model specs
-							scrape(modelUrl, [".buyersguideimgandcomentcontlftimg img", ".buyersguideleftdatacnt > div", ".buyersguiderightdatacnt > div"], function scrapeModel(error, image, specNames, specValues) {
+							scrape(modelUrl, [".buyersguidebreadcrumbs", ".buyersguideimgandcomentcontlftimg img", ".buyersguideleftdatacnt > div", ".buyersguiderightdatacnt > div"], function scrapeModel(error, category, image, specNames, specValues) {
 								if (error) throw error;
+								category = category[0].text().split(">")[1].trim();
 								var modelImageUrl = image[0].attr("src");
 								var bike = {
-									LargeImage: modelImageUrl,
-									SmallImage: smallImageUrl
+									Category: category,
+									ImageXL: modelImageUrl.replace(/large/, "xlarge"),
+									ImageL: modelImageUrl,
+									ImageS: smallImageUrl
 								};
 								for(var i=0; i<specNames.length; i++) {
 									var specName = specNames[i].text().trim().replace(/ +/g, '').replace(/&/g, 'And').replace(/RakeandTrail/g,'RakeAndTrail');
